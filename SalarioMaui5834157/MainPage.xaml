@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalarioMaui5834157.MainPage">
+
+  
+
+    <StackLayout Padding="20">
+        <Label Text="Lista de Trabajadores" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+        <Image Source="trabajador.jfif"
+             HeightRequest="200"
+             HorizontalOptions="Center" />
+        
+        <ListView x:Name="TrabajadoresListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nombre}" Detail="{Binding Sueldo, StringFormat='{0:C}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Entry x:Name="NombreEntry" Placeholder="Nombre" />
+        <Entry x:Name="SueldoEntry" Placeholder="Sueldo" Keyboard="Numeric" />
+
+        <Button Text="Agregar Trabajador" Clicked="Button_Clicked_2" />
+        <Button Text="Aumentar 10% a Todos" Clicked="Button_Clicked_1" />
+        <Button Text="Eliminar Trabajador" Clicked="Button_Clicked_3" />
+    </StackLayout>
+</ContentPage>
