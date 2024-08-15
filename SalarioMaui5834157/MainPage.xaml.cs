@@ -3,6 +3,7 @@
     public partial class MainPage : ContentPage
     {
         private List<Trabajador> trabajadores = new List<Trabajador>();
+        private Trabajador trabajadorSeleccionado;
         private int currentId = 1;
         int count = 0;
 
@@ -72,6 +73,44 @@
             }
 
         }
+
+        private void Button_Clicked_4(object sender, EventArgs e)
+        {
+            if (TrabajadoresListView.SelectedItem is Trabajador trabajador)
+            {
+                if (!string.IsNullOrWhiteSpace(NombreEntry.Text) && decimal.TryParse(SueldoEntry.Text, out decimal sueldoDecimal))
+                {
+                    trabajador.Nombre = NombreEntry.Text;
+                    trabajador.Sueldo = sueldoDecimal;
+
+                    ActualizarListaTrabajadores();
+                    LimpiarEntradas();
+                }
+                else
+                {
+                    DisplayAlert("Error", "Por favor, ingrese un nombre y un sueldo válidos para editar.", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Error", "Por favor, seleccione un trabajador para editar.", "OK");
+            }
+        }
+        private void ActualizarListaTrabajadores()
+        {
+            TrabajadoresListView.ItemsSource = null;
+            TrabajadoresListView.ItemsSource = trabajadores;
+        }
+
+        private void LimpiarEntradas()
+        {
+            NombreEntry.Text = string.Empty;
+            SueldoEntry.Text = string.Empty;
+        }
     }
+
+
+
+
 
 }
